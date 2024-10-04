@@ -1,4 +1,7 @@
-﻿namespace Catalog.API.Products.CreateProduct
+﻿using BuildingBlocks.CQRS;
+using Catalog.API.Models;
+
+namespace Catalog.API.Products.CreateProduct
 {
 
     public record CreateProductCommand(Guid Id, string Name, string Description, List<string> Categories, string ImageFile, decimal Price)
