@@ -20,7 +20,7 @@ namespace Catalog.API.Products.CreateProduct
                 Id = command.Id,
                 Name = command.Name,
                 Description = command.Description,
-                Categories = command.Categories,
+                Category = command.Categories,
                 ImageFile = command.ImageFile,
                 Price = command.Price
             };
