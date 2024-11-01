@@ -1,14 +1,15 @@
 ﻿namespace Catalog.API.Products.GetProductById
 {
 
-    public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResult>;
+    public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResultNew>;
 
-    public record GetProductByIdResult(Product Product);
+//    public record GetProductByIdResult(Product Product);
+    public record GetProductByIdResultNew(Product Product);
 
     internal class GetProductByIdQueryHander(IDocumentSession documentSession)
-        : IQueryHandler<GetProductByIdQuery, GetProductByIdResult>
+        : IQueryHandler<GetProductByIdQuery, GetProductByIdResultNew>
     {
-        public async Task<GetProductByIdResult> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
+        public async Task<GetProductByIdResultNew> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
         {
             var product = await documentSession.LoadAsync<Product>(query.Id);
 
@@ -17,7 +18,7 @@
                 throw new ProductNotFoundException();
             }
 
-            return new GetProductByIdResult(product);
+            return new GetProductByIdResultNew(product);
         }
     }
-}
+} 
